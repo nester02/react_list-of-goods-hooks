@@ -17,12 +17,13 @@ export const goodsFromServer = [
 ];
 
 enum SortType {
+  Default = '',
   Alphabet = 'alphabet',
   Length = 'length',
 }
 
 export const App: React.FC = () => {
-  const [sortField, setSortField] = useState('');
+  const [sortField, setSortField] = useState<SortType>(SortType.Default);
   const [isReversed, setIsReversed] = useState(false);
   const isResetVisible = sortField || isReversed;
   const visibleGoods = [...goodsFromServer];
@@ -69,7 +70,7 @@ export const App: React.FC = () => {
         {isResetVisible && (
           <button
             onClick={() => {
-              setSortField('');
+              setSortField(SortType.Default);
               setIsReversed(false);
             }}
             type="button"
